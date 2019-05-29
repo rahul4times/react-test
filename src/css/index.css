@@ -1,0 +1,49 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.create-task {
+  text-align: center;
+  padding: 5px 0;
+  background: blue;
+}
+
+input[type=text] {
+  margin-right: 5px;
+}
+
+.row {
+  display: flex;
+}
+
+.row > div {
+  height: 94vh;
+  border: 1px solid gray;
+  flex-grow: 1;
+}
+
+.stage-one {
+  background-color: #f2f2f2;
+}
+
+.stage-two {
+  background-color: #fff;
+}
+
+.stage-three {
+  background-color: #f2f2f2;
+}
+
+.task {
+  border: 2px dotted blue;
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  padding: 5px;
+}
