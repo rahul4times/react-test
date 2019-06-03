@@ -1,11 +1,7 @@
 const defaultState = {
   board: {
     text: '',
-    tasks: {
-      stageOne: [],
-      stageTwo: [],
-      stageThree: []
-    }
+    tasks: []
   }
 };
 

@@ -1,25 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {typing, createTask} from '../redux/actionCreators/boardActionCreator';
+import {createTask, typing} from "../redux/actionCreators/boardActionCreator";
+
+import StageOne from './stageOne';
+import StageTwo from './stageTwo';
+import StageThree from './stageThree';
 
 export function Board(props){
   return (
     <div>
-      <div className='create-task'>
-        <input type='text' value={props.text} onChange={e => props.typing(e.target.value)} placeholder='Create task'/>
-        <input type='button' value='ADD' onClick={() => props.createTask(props.text)}/>
-      </div>
+        <div className='create-task-row'>
+            <div className='create-task-one'>
+                <input type='text' value={props.text} onChange={e => props.typing(e.target.value)} placeholder='Create task'/>
+                <input type='button' value='ADD' onClick={() => props.createTask(props.text, 'stage 1')}/>
+            </div>
+            <div className='create-task-two'>
+                <input type='text' value={props.text} onChange={e => props.typing(e.target.value)} placeholder='Create task'/>
+                <input type='button' value='ADD' onClick={() => props.createTask(props.text, 'stage 2')}/>
+            </div>
+            <div className='create-task-three'>
+                <input type='text' value={props.text} onChange={e => props.typing(e.target.value)} placeholder='Create task'/>
+                <input type='button' value='ADD' onClick={() => props.createTask(props.text, 'stage 3')}/>
+            </div>
+        </div>
       <div className='row'>
-        <div className='stage-one'>
-          <h2>Stage 1</h2>
-        </div>
-        <div className='stage-two'>
-          <h2>Stage 2</h2>
-        </div>
-        <div className='stage-three'>
-          <h2>Stage 3</h2>
-        </div>
+          <StageOne/>
+          <StageTwo/>
+          <StageThree/>
       </div>
     </div>
   );
@@ -27,20 +35,23 @@ export function Board(props){
 
 export function mapStateToProps(state){
   return {
-    text: state.board.text
+        text: state.board.text,
+        tasks: state.board.tasks
   }
 }
 
 export function mapDispatchToProps(dispatch){
-  return {
-    typing: text => dispatch(typing(text)),
-    createTask: task => dispatch(createTask(task))
-  }
+    return {
+        typing: text => dispatch(typing(text)),
+        createTask: (task, category) => dispatch(createTask(task, category))
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board);
 
 Board.propTypes = {
-  createTask: PropTypes.func,
-  typing: PropTypes.func
+    createTask: PropTypes.func,
+    tasks: PropTypes.array,
+    typing: PropTypes.func
 };
+
